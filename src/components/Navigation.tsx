@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 
 interface NavigationProps {
   onContactClick: () => void;
@@ -8,13 +9,19 @@ interface NavigationProps {
 
 export default function Navigation({ onContactClick }: NavigationProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = usePathname();
 
   const navLinks = [
-    { label: "Works", href: "#works" },
-    { label: "Product", href: "#product" },
-    { label: "Service", href: "#service" },
-    { label: "About", href: "#about" },
+    { label: "Works", href: "/" },
+    { label: "Product", href: "/product/pairstorming" },
+    { label: "Service", href: "/service/summary" },
+    { label: "About", href: "/about" },
   ];
+
+  const isActive = (href: string) => {
+    if (href === "/") return pathname === "/";
+    return pathname.startsWith(href);
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm">
@@ -32,7 +39,7 @@ export default function Navigation({ onContactClick }: NavigationProps) {
               key={link.label}
               href={link.href}
               className={`text-navy text-sm font-bold tracking-widest hover:opacity-70 transition-opacity ${
-                link.label === "Works" ? "border-b-2 border-navy pb-0.5" : ""
+                isActive(link.href) ? "border-b-2 border-navy pb-0.5" : ""
               }`}
             >
               {link.label}
