@@ -19,7 +19,7 @@ const boardMembers = [
   {
     name: "TETSUYA YAMAMOTO",
     role: "Creative Engineer",
-    specialty: "Data Science \u00D7 UI Design",
+    specialty: "Data Science \u00D7 UI Development",
     bio: "HCI\u3001\u30A6\u30A7\u30A2\u30E9\u30D6\u30EB\u30B3\u30F3\u30D4\u30E5\u30FC\u30C6\u30A3\u30F3\u30B0\u306E\u7814\u7A76\u3092\u884C\u3044\u795E\u6238\u5927\u5B66\u81EA\u7136\u79D1\u5B66\u7814\u7A76\u79D1 \u585A\u672C\u5BFA\u7530\u7814\u7A76\u5BA4\u306B\u3066\u535A\u58EB\uFF08\u5DE5\u5B66\uFF09\u3092\u53D6\u5F97\u3002IoT\u30B9\u30BF\u30FC\u30C8\u30A2\u30C3\u30D7\u3084\u5927\u5B66\u306A\u3069\u3067\u3001\u30EA\u30B5\u30FC\u30C1\u3001\u30BD\u30D5\u30C8\u30A6\u30A7\u30A2\u958B\u767A\u3001\u30C7\u30FC\u30BF\u89E3\u6790\u3001\u30CF\u30FC\u30C9\u30A6\u30A7\u30A2\u30D7\u30ED\u30C8\u30BF\u30A4\u30D4\u30F3\u30B0\u3092\u884C\u3046\u3002",
     img: `${CDN}/5e78148e4c71bd065147894b_member_pics_yamamoto_website.png`,
   },
@@ -71,53 +71,55 @@ const partners = [
 ];
 
 const domains = [
-  "\u30B5\u30FC\u30D3\u30B9\u30C7\u30B6\u30A4\u30F3",
-  "UX\u306E\u8ABF\u67FB\u8A2D\u8A08",
-  "UI\u306E\u30D7\u30ED\u30C8\u30BF\u30A4\u30D4\u30F3\u30B0\u5B9F\u88C5",
-  "IoT\u306E\u30D7\u30ED\u30C8\u30BF\u30A4\u30D4\u30F3\u30B0",
-  "\u81EA\u793E\u30B5\u30FC\u30D3\u30B9",
-  "\u7D71\u8A08\u30C7\u30FC\u30BF\u30B3\u30F3\u30B5\u30EB",
-  "\u610F\u601D\u6C7A\u5B9A\u652F\u63F4",
+  ["\u30B5\u30FC\u30D3\u30B9\u30C7\u30B6\u30A4\u30F3", "UX\u306E\u8ABF\u67FB\u8A2D\u8A08", "UI\u306E\u30D7\u30ED\u30C8\u30BF\u30A4\u30D4\u30F3\u30B0\u5B9F\u88C5"],
+  ["\u7D71\u8A08\u30C7\u30FC\u30BF\u30B3\u30F3\u30B5\u30EB", "\u30A8\u30F4\u30A3\u30C7\u30F3\u30B9\u30D9\u30FC\u30B9\u306E\u610F\u601D\u6C7A\u5B9A\u652F\u63F4"],
+  ["\u81EA\u793E\u30B5\u30FC\u30D3\u30B9"],
 ];
 
-function MemberCard({
-  member,
-}: {
-  member: {
-    name: string;
-    role: string;
-    specialty: string;
-    bio: string;
-    img: string;
-  };
-}) {
+function BoardMemberCard({ member }: { member: typeof boardMembers[0] }) {
   return (
-    <div className="flex gap-6 items-start">
-      <div className="flex-shrink-0">
+    <div>
+      {/* Square photo */}
+      <div className="relative w-[180px] h-[180px] mb-4">
         <img
           src={member.img}
           alt={member.name}
-          className="rounded-full object-cover bg-gray-200"
-          style={{ width: "120px", height: "120px" }}
-          onError={(e) => {
-            (e.target as HTMLImageElement).style.display = "none";
-          }}
+          className="w-full h-full object-cover"
+          style={{ filter: "grayscale(30%)" }}
+          onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
         />
       </div>
-      <div className="flex-1 min-w-0">
-        <h4 className="text-navy text-base md:text-lg font-black tracking-wider">
-          {member.name}
-        </h4>
-        <p className="text-navy/50 text-xs tracking-widest mt-0.5">
-          {member.role}
-        </p>
-        <p className="text-navy/40 text-[11px] tracking-wider mt-1">
-          {member.specialty}
-        </p>
-        <p className="text-navy/50 text-xs leading-relaxed mt-3">
-          {member.bio}
-        </p>
+      {/* Orange underline accent */}
+      <div className="w-[50px] h-[3px] bg-[#f08050] mb-4" />
+      {/* Role + Specialty */}
+      <p className="text-[#e88530] font-bold text-[16px] tracking-[1px]">
+        {member.role}
+      </p>
+      <p className="text-[#e88530] font-bold text-[14px] tracking-[1px] mb-4">
+        {member.specialty}
+      </p>
+      {/* Bio */}
+      <p className="text-[#4a4a4a] text-[12px] leading-[22px] tracking-[0.5px] max-w-[250px]">
+        {member.bio}
+      </p>
+    </div>
+  );
+}
+
+function PartnerCard({ member }: { member: typeof partners[0] }) {
+  return (
+    <div>
+      <div className="relative w-[160px] h-[200px] bg-[#e8e8e8] mb-3">
+        <img
+          src={member.img}
+          alt={member.name}
+          className="w-full h-full object-cover"
+          onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
+        />
       </div>
+      <p className="text-[#4a4a4a] text-[12px] tracking-[0.5px]">
+        {member.name}
+      </p>
     </div>
   );
 }
@@ -130,174 +132,233 @@ export default function AboutPage() {
       <Navigation onContactClick={() => setContactOpen(true)} />
 
       {/* ===== VISION ===== */}
-      <section className="pb-24 px-6 md:px-16 lg:px-24" style={{ paddingTop: "150px" }}>
-        <div className="max-w-[1000px] mx-auto">
-          <p className="font-black" style={{ color: "#ddd", fontSize: "clamp(2rem, 5vw, 3.5rem)", letterSpacing: "0.3em", marginBottom: "24px" }}>
-            VISION
+      <section className="relative overflow-hidden" style={{ height: "840px", marginTop: "60px" }}>
+        {/* Background gradient (pink to lavender) */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: "linear-gradient(135deg, rgba(245,210,200,0.3) 0%, rgba(230,225,245,0.3) 50%, transparent 70%)",
+          }}
+        />
+        {/* Accent bar */}
+        <div className="absolute left-[-86px] top-[104px] w-[839px] h-[167px] bg-[#b8d8d0] opacity-15 -rotate-0" />
+
+        <div className="max-w-[1200px] mx-auto relative px-[100px]">
+          <p
+            className="uppercase tracking-[8.3px]"
+            style={{ color: "#ccc", fontSize: "50px", fontFamily: "'Lato', sans-serif", marginTop: "170px" }}
+          >
+            Vision
           </p>
-          <h1 className="text-navy text-5xl md:text-6xl lg:text-7xl font-black tracking-wider leading-tight">
+          <h1
+            className="text-[#4a4a4a] font-bold tracking-[3px] mt-4"
+            style={{ fontSize: "clamp(36px, 5vw, 70px)", fontFamily: "'Lato', sans-serif" }}
+          >
             Create New Nodes
           </h1>
-          <p className="text-navy/60 text-base md:text-lg mt-6 tracking-wider">
-            {"\u767A\u898B\u7684\u306A\u30D7\u30ED\u30BB\u30B9\u3067\u3088\u308A\u3088\u3044\u672A\u6765\u3092\u9078\u629E\u3059\u308B"}
-          </p>
         </div>
       </section>
 
       {/* ===== MISSION ===== */}
-      <section className="py-24 px-6 md:px-16 lg:px-24 bg-[#f5f5f5]">
-        <div className="max-w-[1000px] mx-auto">
-          <p className="font-black" style={{ color: "#ddd", fontSize: "clamp(2rem, 5vw, 3.5rem)", letterSpacing: "0.3em", marginBottom: "48px" }}>
-            MISSION
+      <section className="relative px-6 md:px-[100px]" style={{ minHeight: "1544px" }}>
+        <div className="max-w-[1200px] mx-auto">
+          <p
+            className="uppercase tracking-[8.3px]"
+            style={{ color: "#ccc", fontSize: "50px", fontFamily: "'Lato', sans-serif" }}
+          >
+            Mission
           </p>
+          <div className="h-[2px] w-full bg-[#e8e8e8] mt-4 mb-16" />
 
-          {/* Mission 01 */}
-          <div className="grid md:grid-cols-2 gap-10 items-center mb-20">
+          {/* 01 HCI Ecosystem */}
+          <div className="grid md:grid-cols-2 gap-12 items-start mb-24">
             <div>
-              <h2 className="text-navy text-xl md:text-2xl font-black tracking-wider leading-relaxed mb-4">
+              <p className="text-[#4a4a4a] text-[14px] tracking-[2px] uppercase mb-6">
                 01 Designing HCI Ecosystem
-              </h2>
-              <p className="text-navy/60 text-sm leading-[2]">
-                {"\u4EBA\u306E\u8A8D\u77E5\u30B7\u30B9\u30C6\u30E0 / \u793E\u4F1A\u7D44\u7E54/\u30B3\u30F3\u30D4\u30E5\u30FC\u30BF\u306E\u30A4\u30F3\u30BF\u30FC\u30D5\u30A7\u30FC\u30B9\u3092\u30C7\u30B6\u30A4\u30F3\u3057,\u30B5\u30FC\u30D3\u30B9\u3092\u30A8\u30B3\u30B7\u30B9\u30C6\u30E0\u3068\u3057\u3066\u9054\u6210\u3059\u308B"}
               </p>
+              <div className="text-[#4a4a4a] font-bold text-[24px] tracking-[2px] leading-[40px]">
+                <p>
+                  <span className="bg-[#b8d8d0]/30 px-1">{"\u4EBA\u306E\u8A8D\u77E5\u30B7\u30B9\u30C6\u30E0 / \u793E\u4F1A\u7D44\u7E54/"}</span>
+                </p>
+                <p>
+                  <span className="bg-[#b8d8d0]/30 px-1">{"\u30B3\u30F3\u30D4\u30E5\u30FC\u30BF\u306E\u30A4\u30F3\u30BF\u30FC\u30D5\u30A7\u30FC\u30B9\u3092\u30C7\u30B6\u30A4\u30F3\u3057\u3001"}</span>
+                </p>
+                <p>
+                  <span className="bg-[#b8d8d0]/30 px-1">{"\u30B5\u30FC\u30D3\u30B9\u3092\u30A8\u30B3\u30B7\u30B9\u30C6\u30E0\u3068\u3057\u3066\u9054\u6210\u3059\u308B"}</span>
+                </p>
+              </div>
             </div>
-            <div className="flex justify-center gap-4">
+            <div className="flex justify-center">
               <img
                 src={`${CDN}/5d1beab8df1829e462ebc092_infograph_ecosystemdesign.png`}
                 alt="HCI Ecosystem"
-                className="w-40 md:w-48"
-              />
-              <img
-                src={`${CDN}/5d1beab08da8428e6293d65a_infograph_thinkingman.png`}
-                alt="Thinking Man"
-                className="w-40 md:w-48"
+                className="w-full max-w-[400px]"
               />
             </div>
           </div>
 
-          {/* Mission 02 */}
-          <div className="grid md:grid-cols-2 gap-10 items-center">
-            <div>
-              <h2 className="text-navy text-xl md:text-2xl font-black tracking-wider leading-relaxed mb-4">
-                02 Augmentation of Abilities by Smart tec
-              </h2>
-              <p className="text-navy/60 text-sm leading-[2]">
-                {"\u30B9\u30DE\u30FC\u30C8\u306A\u30C6\u30AF\u30CE\u30ED\u30B8\u30FC\u5229\u7528\u306B\u3088\u3063\u3066\u4EBA\u3084\u7D44\u7E54\u306E\u80FD\u529B\u3092\u62E1\u5F35\u3059\u308B"}
-              </p>
-            </div>
+          {/* 02 Augmentation */}
+          <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="flex justify-center">
               <img
                 src={`${CDN}/5d1beab82b2ad21e8344ae28_smarttec.png`}
                 alt="Smart Technology"
-                className="w-48 md:w-56"
+                className="w-full max-w-[400px]"
               />
+            </div>
+            <div>
+              <p className="text-[#4a4a4a] text-[14px] tracking-[2px] uppercase mb-6">
+                02 Augmentation of Abilities by Smart tec
+              </p>
+              <div className="text-[#4a4a4a] font-bold text-[24px] tracking-[2px] leading-[40px]">
+                <p>{"\u30B9\u30DE\u30FC\u30C8\u306A\u30C6\u30AF\u30CE\u30ED\u30B8\u30FC\u5229\u7528\u306B\u3088\u3063\u3066"}</p>
+                <p>{"\u4EBA\u3084\u7D44\u7E54\u306E\u80FD\u529B\u3092\u62E1\u5F35\u3059\u308B"}</p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* ===== DOMAIN ===== */}
-      <section className="py-24 px-6 md:px-16 lg:px-24">
-        <div className="max-w-[1000px] mx-auto">
-          <p className="font-black" style={{ color: "#ddd", fontSize: "clamp(2rem, 5vw, 3.5rem)", letterSpacing: "0.3em", marginBottom: "32px" }}>
-            DOMAIN
+      <section className="py-24 px-6 md:px-[100px]" style={{ minHeight: "750px" }}>
+        <div className="max-w-[1200px] mx-auto">
+          <p
+            className="uppercase tracking-[8.3px] mb-4"
+            style={{ color: "#ccc", fontSize: "50px", fontFamily: "'Lato', sans-serif" }}
+          >
+            Domain
           </p>
-          <p className="text-navy/60 text-sm leading-[2] max-w-2xl mb-10">
-            {"\u30EA\u30B5\u30FC\u30C1\u3001\u30C7\u30FC\u30BF\u89E3\u6790\u3001\u30D7\u30ED\u30C8\u30BF\u30A4\u30D4\u30F3\u30B0\u3001\u65B0\u898F\u4E8B\u696D\u30B5\u30FC\u30D3\u30B9\u8A2D\u8A08\u306A\u3069\u306ER&D\u9818\u57DF\u306B\u3066\u3001HCI"}
-            <span className="text-navy/40">
-              {" (Human Computer Interaction)"}
-            </span>
-            {"\u3001\u8A8D\u77E5\u79D1\u5B66\u3001\u884C\u52D5\u7D4C\u6E08\u5B66\u306B\u57FA\u3065\u3044\u305F\u30A8\u30D3\u30C7\u30F3\u30B9\u30D9\u30FC\u30B9\u306E\u30C7\u30B6\u30A4\u30F3\u3092\u63D0\u4F9B\u3057\u307E\u3059\u3002"}
-          </p>
+          <div className="h-[2px] w-full bg-[#e8e8e8] mb-12" />
 
-          <div className="flex flex-wrap gap-3">
-            {domains.map((d) => (
-              <span
-                key={d}
-                className="text-navy/50 text-xs tracking-wider border border-navy/15 rounded-full px-4 py-2"
-              >
-                {d}
-              </span>
-            ))}
+          <div className="grid md:grid-cols-2 gap-16">
+            {/* Left: description */}
+            <p className="text-[#4a4a4a] text-[16px] leading-[32px] tracking-[2px]">
+              {"\u52A0\u901F\u3059\u308B\u30B3\u30F3\u30D4\u30E5\u30FC\u30C6\u30A3\u30F3\u30B0\u306E\u9032\u5316\u3092\u4EBA\u9593\u306E\u8A8D\u8B58\u80FD\u529B\u3068\u30D3\u30B8\u30CD\u30B9\u306A\u3069\u306E\u793E\u4F1A\u74B0\u5883\u306B\u6700\u9069\u306B\u9069\u5FDC\u3055\u305B\u308B\u30E6\u30FC\u30B6\u30A4\u30F3\u30BF\u30FC\u30D5\u30A7\u30FC\u30B9\u306E\u30C7\u30B6\u30A4\u30F3\u30FB\u958B\u767A\u3092\u63D0\u4F9B\u3057\u307E\u3059\u3002\u30EA\u30B5\u30FC\u30C1\u3001\u30C7\u30FC\u30BF\u89E3\u6790\u3092\u4E2D\u5FC3\u306B\u30C7\u30B6\u30A4\u30F3\u30B7\u30F3\u30AD\u30F3\u30B0,HCI(Human Computer Interaction)\u3001\u8A8D\u77E5\u79D1\u5B66\u3092\u30B3\u30F3\u30D4\u30C6\u30F3\u30B7\u30FC\u3068\u3057\u3066\u3001\u767A\u5C55\u7684\u306ANode\u306E\u5275\u51FA\u3092\u76EE\u6307\u3057\u307E\u3059"}
+            </p>
+            {/* Right: domain tags in 2 columns */}
+            <div>
+              <div className="grid grid-cols-2 gap-y-4 gap-x-8">
+                {domains[0].map((d) => (
+                  <p key={d} className="text-[#4a4a4a] text-[14px] tracking-[1.5px]">{d}</p>
+                ))}
+                {domains[1].map((d) => (
+                  <p key={d} className="text-[#4a4a4a] text-[14px] tracking-[1.5px]">{d}</p>
+                ))}
+              </div>
+              <div className="mt-8">
+                {domains[2].map((d) => (
+                  <p key={d} className="text-[#4a4a4a] text-[14px] tracking-[1.5px]">{d}</p>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* ===== MEMBER ===== */}
-      <section className="py-24 px-6 md:px-16 lg:px-24 bg-[#f5f5f5]">
-        <div className="max-w-[1000px] mx-auto">
-          <p className="font-black" style={{ color: "#ddd", fontSize: "clamp(2rem, 5vw, 3.5rem)", letterSpacing: "0.3em", marginBottom: "48px" }}>
-            MEMBER
+      <section
+        className="relative py-24 px-6 md:px-[100px] overflow-hidden"
+        style={{
+          background: "linear-gradient(180deg, rgba(230,225,245,0.2) 0%, rgba(220,230,248,0.3) 40%, rgba(240,220,230,0.2) 100%)",
+        }}
+      >
+        <div className="max-w-[1200px] mx-auto">
+          <p
+            className="uppercase tracking-[8.3px] mb-4"
+            style={{ color: "#ccc", fontSize: "50px", fontFamily: "'Lato', sans-serif" }}
+          >
+            Member
           </p>
+          <div className="h-[2px] w-full bg-[#e8e8e8] mb-16" />
 
           {/* BOARD */}
-          <p className="text-navy/30 text-sm font-bold tracking-[0.2em] mb-8">
-            BOARD
-          </p>
-          <div className="grid md:grid-cols-2 gap-10 mb-16">
-            {boardMembers.map((m) => (
-              <MemberCard key={m.name} member={m} />
-            ))}
+          <div className="relative mb-20">
+            <p
+              className="absolute right-0 top-0 tracking-[8px] uppercase"
+              style={{ color: "#4a4a4a", fontSize: "28px", fontFamily: "'Lato', sans-serif" }}
+            >
+              Board
+            </p>
+            <div className="grid grid-cols-2 gap-12 max-w-[600px]">
+              {boardMembers.map((m) => (
+                <BoardMemberCard key={m.name} member={m} />
+              ))}
+            </div>
           </div>
 
           {/* PARTNER */}
-          <p className="text-navy/30 text-sm font-bold tracking-[0.2em] mb-8">
-            PARTNER
+          <div className="relative">
+            <p
+              className="absolute right-0 top-0 tracking-[8px] uppercase"
+              style={{ color: "#4a4a4a", fontSize: "28px", fontFamily: "'Lato', sans-serif" }}
+            >
+              Partner
+            </p>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-[800px]">
+              {partners.map((m) => (
+                <PartnerCard key={m.name} member={m} />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== Join Our Partnership ===== */}
+      <section className="py-20 px-6 md:px-[100px]">
+        <div className="max-w-[1200px] mx-auto">
+          <h2
+            className="text-[#4a4a4a] tracking-[3px] mb-10"
+            style={{ fontSize: "clamp(30px, 4vw, 50px)", fontFamily: "'Lato', sans-serif", fontStyle: "italic" }}
+          >
+            Join Our Partnership
+          </h2>
+          <p className="text-[#4a4a4a] text-[14px] leading-[28px] tracking-[1px] max-w-[900px] mb-8">
+            INVITRO{"\u3067\u306F\u4ED5\u4E8B\u306B\u5FDC\u3058\u3066\u30DA\u30A2\u30EF\u30FC\u30AF\u3092\u7D44\u3093\u3067\u3044\u308B\u30C7\u30B6\u30A4\u30CA\u30FC\u30FB\u30A8\u30F3\u30B8\u30CB\u30A2\u30D1\u30FC\u30C8\u30CA\u30FC\u3092\u52DF\u96C6\u3057\u3066\u3044\u307E\u3059\u3002"}
+            <br />
+            INVITRO{"\u3067\u306F\u30E6\u30FC\u30B6\u30FB\u30C1\u30FC\u30E0\u306B\u5BFE\u3057\u3066\u4FA1\u5024\u3068\u5275\u9020\u6027\u3092\u91CD\u8996\u3057\u3066\u3044\u307E\u3059\u3002\u8A73\u3057\u304F\u306F\u304A\u554F\u3044\u5408\u308F\u305B\u304F\u3060\u3055\u3044"}
           </p>
-          <div className="grid md:grid-cols-2 gap-10">
-            {partners.map((m) => (
-              <MemberCard key={m.name} member={m} />
+
+          <p className="text-[#4a4a4a] text-[12px] tracking-[1px]">
+            {"\u8208\u5473\u306E\u3042\u308B\u65B9\u306F\u304A\u6C17\u8EFD\u306B\u304A\u554F\u3044\u5408\u308F\u305B\u304F\u3060\u3055\u3044"}
+          </p>
+        </div>
+      </section>
+
+      {/* ===== Company Info ===== */}
+      <section className="py-20 px-6 md:px-[100px] bg-[#fafafa]">
+        <div className="max-w-[900px] mx-auto">
+          <h2
+            className="text-[#ccc] tracking-[4px] mb-12"
+            style={{ fontSize: "clamp(28px, 4vw, 45px)", fontFamily: "'Lato', sans-serif", fontStyle: "italic" }}
+          >
+            Company Info
+          </h2>
+
+          <div className="space-y-0">
+            {[
+              ["\u4F1A\u793E\u540D", "INVITRO LLC"],
+              ["\u8A2D\u7ACB\u5E74\u6708", "2018 12.19"],
+              ["\u4EE3\u8868", "\u5C0F\u8535\u572D\u8F14 \u5C71\u672C"],
+              ["\u8A2D\u7ACB\u65E5", "\u6771\u4EAC\u90FD\u4E16\u7530\u8C37\u533A"],
+            ].map(([label, value], i) => (
+              <div
+                key={i}
+                className="flex items-center py-6 border-t border-[#e8e8e8]"
+                style={{ paddingLeft: "120px" }}
+              >
+                <span className="text-[#999] text-[14px] tracking-[3px] w-[120px] flex-shrink-0">
+                  {label}
+                </span>
+                <span className="text-[#4a4a4a] font-bold text-[18px] tracking-[2px]">
+                  {value}
+                </span>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ===== COMPANY ===== */}
-      <section className="py-24 px-6 md:px-16 lg:px-24">
-        <div className="max-w-[1000px] mx-auto">
-          <p className="font-black" style={{ color: "#ddd", fontSize: "clamp(2rem, 5vw, 3.5rem)", letterSpacing: "0.3em", marginBottom: "48px" }}>
-            COMPANY
-          </p>
-
-          <div className="space-y-6 text-sm">
-            <div className="flex gap-8">
-              <span className="text-navy/40 w-28 flex-shrink-0 tracking-wider">
-                {"\u4F1A\u793E\u540D"}
-              </span>
-              <span className="text-navy font-bold tracking-wider">
-                INVITRO LLC
-              </span>
-            </div>
-            <div className="flex gap-8">
-              <span className="text-navy/40 w-28 flex-shrink-0 tracking-wider">
-                {"\u8A2D\u7ACB\u5E74\u6708\u65E5"}
-              </span>
-              <span className="text-navy tracking-wider">2018 12.19</span>
-            </div>
-            <div className="flex gap-8">
-              <span className="text-navy/40 w-28 flex-shrink-0 tracking-wider">
-                {"\u4EE3\u8868"}
-              </span>
-              <span className="text-navy tracking-wider">
-                {"\u5C0F\u8535\u572D\u8F14\u3000\u5C71\u672C\u54F2\u4E5F"}
-              </span>
-            </div>
-            <div className="flex gap-8">
-              <span className="text-navy/40 w-28 flex-shrink-0 tracking-wider">
-                {"\u6240\u5728\u5730"}
-              </span>
-              <span className="text-navy tracking-wider">
-                {"\u6771\u4EAC\u90FD\u76EE\u9ED2\u533A"}
-              </span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <ContactModal
-        isOpen={contactOpen}
-        onClose={() => setContactOpen(false)}
-      />
+      <ContactModal isOpen={contactOpen} onClose={() => setContactOpen(false)} />
     </main>
   );
 }
