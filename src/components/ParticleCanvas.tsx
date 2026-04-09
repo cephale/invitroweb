@@ -41,29 +41,32 @@ export default function ParticleCanvas() {
     const w = () => canvas.width / dpr;
     const h = () => canvas.height / dpr;
 
-    // Create particles in an organic blob shape
+    // Create particles in a large organic blob shape filling ~60% of the hero
     const initParticles = () => {
-      const count = 600;
+      const count = 1200;
       const particles: Particle[] = [];
       const width = w();
       const height = h();
-      const cx = width * 0.35;
-      const cy = height * 0.4;
+      const cx = width * 0.42;
+      const cy = height * 0.48;
 
       for (let i = 0; i < count; i++) {
         // Use gaussian-like distribution for organic look
         const angle = Math.random() * Math.PI * 2;
         const r1 = Math.random();
         const r2 = Math.random();
-        const gaussian = Math.sqrt(-2 * Math.log(r1)) * Math.cos(2 * Math.PI * r2);
-        const radius = Math.abs(gaussian) * Math.min(width, height) * 0.22;
+        const gaussian = Math.sqrt(-2 * Math.log(r1 || 0.001)) * Math.cos(2 * Math.PI * r2);
+        const spreadX = width * 0.30;
+        const spreadY = height * 0.32;
+        const radiusX = Math.abs(gaussian) * spreadX;
+        const radiusY = Math.abs(gaussian) * spreadY;
 
         particles.push({
-          x: cx + Math.cos(angle) * radius,
-          y: cy + Math.sin(angle) * radius * 0.9,
-          vx: (Math.random() - 0.5) * 0.2,
-          vy: (Math.random() - 0.5) * 0.2,
-          size: Math.random() * 1.8 + 0.3,
+          x: cx + Math.cos(angle) * radiusX,
+          y: cy + Math.sin(angle) * radiusY,
+          vx: (Math.random() - 0.5) * 0.15,
+          vy: (Math.random() - 0.5) * 0.15,
+          size: Math.random() * 2.0 + 0.3,
           life: Math.random() * 300,
           maxLife: 300 + Math.random() * 400,
         });
@@ -90,11 +93,13 @@ export default function ParticleCanvas() {
       const particles = particlesRef.current;
       const mx = mouseRef.current.x;
       const my = mouseRef.current.y;
-      const cx = width * 0.35;
-      const cy = height * 0.4;
+      const cx = width * 0.42;
+      const cy = height * 0.48;
 
-      // Draw connections first (behind particles)
+      // Draw connections first (behind particles) - increased connection distance
       ctx.lineWidth = 0.4;
+      const connDist = 50;
+      const connDistSq = connDist * connDist;
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
         for (let j = i + 1; j < particles.length; j++) {
@@ -102,8 +107,8 @@ export default function ParticleCanvas() {
           const ddx = p.x - p2.x;
           const ddy = p.y - p2.y;
           const d = ddx * ddx + ddy * ddy;
-          if (d < 900) { // 30^2
-            const alpha = (1 - Math.sqrt(d) / 30) * 0.12;
+          if (d < connDistSq) {
+            const alpha = (1 - Math.sqrt(d) / connDist) * 0.1;
             ctx.strokeStyle = `rgba(25, 35, 72, ${alpha})`;
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
@@ -151,11 +156,12 @@ export default function ParticleCanvas() {
           const r1 = Math.random();
           const r2 = Math.random();
           const gaussian = Math.sqrt(-2 * Math.log(r1 || 0.001)) * Math.cos(2 * Math.PI * r2);
-          const radius = Math.abs(gaussian) * Math.min(width, height) * 0.22;
-          p.x = cx + Math.cos(angle) * radius;
-          p.y = cy + Math.sin(angle) * radius * 0.9;
-          p.vx = (Math.random() - 0.5) * 0.2;
-          p.vy = (Math.random() - 0.5) * 0.2;
+          const spreadX = width * 0.30;
+          const spreadY = height * 0.32;
+          p.x = cx + Math.cos(angle) * Math.abs(gaussian) * spreadX;
+          p.y = cy + Math.sin(angle) * Math.abs(gaussian) * spreadY;
+          p.vx = (Math.random() - 0.5) * 0.15;
+          p.vy = (Math.random() - 0.5) * 0.15;
           p.life = 0;
           p.maxLife = 300 + Math.random() * 400;
         }

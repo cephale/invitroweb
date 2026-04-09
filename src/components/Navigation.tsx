@@ -24,35 +24,51 @@ export default function Navigation({ onContactClick }: NavigationProps) {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm">
-      <div className="flex items-center justify-between px-6 md:px-10 py-3">
-        {/* Logo */}
-        <a href="/" className="flex items-baseline gap-0 text-navy text-[22px] tracking-[0.15em] mr-8">
-          <span className="font-light text-navy/50">IN</span>
-          <span className="font-black">VITRO</span>
-        </a>
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white" style={{ height: "60px" }}>
+      <div
+        className="flex items-center justify-between h-full"
+        style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 64px" }}
+      >
+        {/* Left group: Logo + Nav links */}
+        <div className="flex items-center">
+          {/* Logo */}
+          <a
+            href="/"
+            className="flex items-baseline gap-0 text-navy tracking-[0.15em]"
+            style={{ width: "180px", paddingRight: "10px", fontSize: "22px" }}
+          >
+            <span className="font-light text-navy/50">IN</span>
+            <span className="font-black">VITRO</span>
+          </a>
 
-        {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-6">
-          {navLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              className={`text-navy text-sm font-bold tracking-widest hover:opacity-70 transition-opacity ${
-                isActive(link.href) ? "border-b-2 border-navy pb-0.5" : ""
-              }`}
-            >
-              {link.label}
-            </a>
-          ))}
+          {/* Desktop Nav */}
+          <div className="hidden md:flex items-center">
+            {navLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                className={`text-navy hover:opacity-70 transition-opacity ${
+                  isActive(link.href) ? "border-b-2 border-navy" : ""
+                }`}
+                style={{
+                  fontSize: "14px",
+                  letterSpacing: "1.5px",
+                  fontWeight: 400,
+                  marginRight: "24px",
+                  paddingBottom: isActive(link.href) ? "2px" : "0",
+                }}
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
         </div>
 
-        <div className="flex-1" />
-
-        {/* Contact Button */}
+        {/* Contact Button - far right */}
         <button
           onClick={onContactClick}
-          className="hidden md:block text-navy text-sm font-bold tracking-widest hover:opacity-70 transition-opacity cursor-pointer"
+          className="hidden md:block text-navy hover:opacity-70 transition-opacity cursor-pointer"
+          style={{ fontSize: "20px", fontWeight: 500, letterSpacing: "1.5px" }}
         >
           Contact
         </button>

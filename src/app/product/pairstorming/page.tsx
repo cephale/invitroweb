@@ -16,7 +16,7 @@ export default function ProductPage() {
       <Navigation onContactClick={() => setContactOpen(true)} />
 
       {/* ===== Hero Section ===== */}
-      <section className="relative pt-20 bg-[#faf9f7] overflow-hidden">
+      <section className="relative bg-[#faf9f7] overflow-hidden" style={{ paddingTop: "60px" }}>
         <div className="max-w-[1200px] mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center min-h-[700px]">
           {/* Left: App Screenshots */}
           <div className="relative flex-shrink-0 w-full md:w-[55%] flex items-end justify-center gap-4 pt-10">
@@ -59,7 +59,7 @@ export default function ProductPage() {
       </section>
 
       {/* ===== 3 Value Cards ===== */}
-      <section className="py-4 bg-[#f5f5f5]">
+      <section className="py-16 bg-[#f5f5f5]">
         <div className="max-w-[1100px] mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
             {

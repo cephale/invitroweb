@@ -97,7 +97,8 @@ function MemberCard({
         <img
           src={member.img}
           alt={member.name}
-          className="w-24 h-24 md:w-28 md:h-28 rounded-full object-cover bg-gray-200"
+          className="rounded-full object-cover bg-gray-200"
+          style={{ width: "120px", height: "120px" }}
           onError={(e) => {
             (e.target as HTMLImageElement).style.display = "none";
           }}
@@ -129,9 +130,9 @@ export default function AboutPage() {
       <Navigation onContactClick={() => setContactOpen(true)} />
 
       {/* ===== VISION ===== */}
-      <section className="pt-32 pb-24 px-6 md:px-16 lg:px-24">
+      <section className="pb-24 px-6 md:px-16 lg:px-24" style={{ paddingTop: "150px" }}>
         <div className="max-w-[1000px] mx-auto">
-          <p className="text-navy/20 text-3xl md:text-4xl font-black tracking-[0.3em] mb-6">
+          <p className="font-black" style={{ color: "#ddd", fontSize: "clamp(2rem, 5vw, 3.5rem)", letterSpacing: "0.3em", marginBottom: "24px" }}>
             VISION
           </p>
           <h1 className="text-navy text-5xl md:text-6xl lg:text-7xl font-black tracking-wider leading-tight">
@@ -146,7 +147,7 @@ export default function AboutPage() {
       {/* ===== MISSION ===== */}
       <section className="py-24 px-6 md:px-16 lg:px-24 bg-[#f5f5f5]">
         <div className="max-w-[1000px] mx-auto">
-          <p className="text-navy/20 text-3xl md:text-4xl font-black tracking-[0.3em] mb-12">
+          <p className="font-black" style={{ color: "#ddd", fontSize: "clamp(2rem, 5vw, 3.5rem)", letterSpacing: "0.3em", marginBottom: "48px" }}>
             MISSION
           </p>
 
@@ -198,7 +199,7 @@ export default function AboutPage() {
       {/* ===== DOMAIN ===== */}
       <section className="py-24 px-6 md:px-16 lg:px-24">
         <div className="max-w-[1000px] mx-auto">
-          <p className="text-navy/20 text-3xl md:text-4xl font-black tracking-[0.3em] mb-8">
+          <p className="font-black" style={{ color: "#ddd", fontSize: "clamp(2rem, 5vw, 3.5rem)", letterSpacing: "0.3em", marginBottom: "32px" }}>
             DOMAIN
           </p>
           <p className="text-navy/60 text-sm leading-[2] max-w-2xl mb-10">
@@ -225,7 +226,7 @@ export default function AboutPage() {
       {/* ===== MEMBER ===== */}
       <section className="py-24 px-6 md:px-16 lg:px-24 bg-[#f5f5f5]">
         <div className="max-w-[1000px] mx-auto">
-          <p className="text-navy/20 text-3xl md:text-4xl font-black tracking-[0.3em] mb-12">
+          <p className="font-black" style={{ color: "#ddd", fontSize: "clamp(2rem, 5vw, 3.5rem)", letterSpacing: "0.3em", marginBottom: "48px" }}>
             MEMBER
           </p>
 
@@ -254,7 +255,7 @@ export default function AboutPage() {
       {/* ===== COMPANY ===== */}
       <section className="py-24 px-6 md:px-16 lg:px-24">
         <div className="max-w-[1000px] mx-auto">
-          <p className="text-navy/20 text-3xl md:text-4xl font-black tracking-[0.3em] mb-12">
+          <p className="font-black" style={{ color: "#ddd", fontSize: "clamp(2rem, 5vw, 3.5rem)", letterSpacing: "0.3em", marginBottom: "48px" }}>
             COMPANY
           </p>
 

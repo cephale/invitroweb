@@ -75,7 +75,7 @@ const projects = [
 
 export default function WorksSection() {
   return (
-    <section id="works" className="bg-[#f5f5f5]">
+    <section id="works" className="bg-[#f5f5f5]" style={{ padding: 0, margin: 0 }}>
       <div className="grid grid-cols-1 md:grid-cols-2">
         {projects.map((project) => (
           <a

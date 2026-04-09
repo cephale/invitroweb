@@ -16,7 +16,7 @@ export default function ServicePage() {
       <Navigation onContactClick={() => setContactOpen(true)} />
 
       {/* ===== Hero Section with pink bg ===== */}
-      <section className="relative pt-20 min-h-[90vh] flex items-center overflow-hidden">
+      <section className="relative flex items-center overflow-hidden" style={{ paddingTop: "80px", minHeight: "90vh" }}>
         {/* Background image (pink gradient from original) */}
         <div
           className="absolute top-0 right-0 w-[90%] h-full bg-no-repeat bg-right-top bg-contain opacity-80"
@@ -98,8 +98,8 @@ export default function ServicePage() {
 
       {/* ===== Service Design ===== */}
       <section className="py-24 px-6 md:px-16 bg-[#f5f5f5]">
-        <div className="max-w-[1100px] mx-auto">
-          <h2 className="text-navy/20 text-5xl md:text-6xl lg:text-7xl font-black tracking-wider mb-6">
+        <div className="max-w-[1100px] mx-auto relative">
+          <h2 className="font-black tracking-wider" style={{ color: "#e8e8e8", fontSize: "clamp(3rem, 7vw, 5.5rem)", marginBottom: "24px", lineHeight: 1.1 }}>
             Service Design
           </h2>
           <div className="grid md:grid-cols-2 gap-12 items-start">
@@ -117,8 +117,8 @@ export default function ServicePage() {
 
       {/* ===== LEAN UX ===== */}
       <section className="py-24 px-6 md:px-16">
-        <div className="max-w-[1100px] mx-auto">
-          <h2 className="text-navy/20 text-5xl md:text-6xl lg:text-7xl font-black tracking-wider mb-6">
+        <div className="max-w-[1100px] mx-auto relative">
+          <h2 className="font-black tracking-wider" style={{ color: "#e8e8e8", fontSize: "clamp(3rem, 7vw, 5.5rem)", marginBottom: "24px", lineHeight: 1.1 }}>
             LEAN UX
           </h2>
           <div className="grid md:grid-cols-2 gap-12 items-start">
@@ -136,8 +136,8 @@ export default function ServicePage() {
 
       {/* ===== UI Design ===== */}
       <section className="py-24 px-6 md:px-16 bg-[#f5f5f5]">
-        <div className="max-w-[1100px] mx-auto">
-          <h2 className="text-navy/20 text-5xl md:text-6xl lg:text-7xl font-black tracking-wider mb-6">
+        <div className="max-w-[1100px] mx-auto relative">
+          <h2 className="font-black tracking-wider" style={{ color: "#e8e8e8", fontSize: "clamp(3rem, 7vw, 5.5rem)", marginBottom: "24px", lineHeight: 1.1 }}>
             UI Design
           </h2>
           <div className="grid md:grid-cols-2 gap-12 items-start">
@@ -157,11 +157,11 @@ export default function ServicePage() {
 
       {/* ===== Data Science And Design ===== */}
       <section className="py-24 px-6 md:px-16">
-        <div className="max-w-[1100px] mx-auto">
-          <h2 className="text-navy/20 text-5xl md:text-6xl lg:text-7xl font-black tracking-wider mb-2">
+        <div className="max-w-[1100px] mx-auto relative">
+          <h2 className="font-black tracking-wider" style={{ color: "#e8e8e8", fontSize: "clamp(3rem, 7vw, 5.5rem)", marginBottom: "0", lineHeight: 1.1 }}>
             Data Science
           </h2>
-          <h2 className="text-navy/20 text-5xl md:text-6xl lg:text-7xl font-black tracking-wider mb-6">
+          <h2 className="font-black tracking-wider" style={{ color: "#e8e8e8", fontSize: "clamp(3rem, 7vw, 5.5rem)", marginBottom: "24px", lineHeight: 1.1 }}>
             And Design
           </h2>
           <p className="text-navy/60 text-sm leading-[2] max-w-lg mb-10">

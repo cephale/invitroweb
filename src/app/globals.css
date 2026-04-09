@@ -19,7 +19,6 @@ body {
   font-family: var(--font-sans);
   background: #ffffff;
   color: var(--color-navy);
-  overflow-x: hidden;
 }
 
 /* Smooth scrolling */
